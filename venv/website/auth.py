@@ -3,18 +3,23 @@ from flask import Blueprint, render_template, request
 auth = Blueprint('auth', __name__)
 
 
+@auth.route('/home')
+def home():
+    return render_template('home.html')
+
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     data = request.form
     return render_template('login.html')
 
 
-@auth.route('logout')
+@auth.route('/logout')
 def logout():
     return "<p>logout<p>"
 
 
-@auth.route('sign_up', methods=['GET', 'POST'])
+@auth.route('/sign_up', methods=['GET', 'POST'])
 def sign_up():
     if request.method == 'POST':
         email = request.form.get('email')
